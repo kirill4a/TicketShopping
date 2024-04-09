@@ -1,0 +1,11 @@
+@TicketShopping.WebApi_HostAddress = http://localhost:5201/api
+
+### ping
+GET {{TicketShopping.WebApi_HostAddress}}/airport/ping/
+Accept: application/json
+
+### search airport
+GET {{TicketShopping.WebApi_HostAddress}}/airport/search?query=EG
+Accept: application/json
+
+
