@@ -1,12 +1,18 @@
 ﻿using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using TicketShopping.Domain.Aggregates.Airport;
+using TicketShopping.Domain.ValueObjects;
+using DbAirport = TicketShopping.Persistence.Entities.Models.Airport;
 using DomainAirport = TicketShopping.Domain.Aggregates.Airport.Airport;
 
 namespace TicketShopping.Persistence.Repositories.Airport;
 
-internal class AirportRepository : IAirportRepository
+internal class AirportRepository : RepositoryBase<DbAirport>, IAirportRepository
 {
+    public AirportRepository(DbSet<DbAirport> set) : base(set)
+    {
+    }
+
     public async Task<IEnumerable<DomainAirport>> FilterAsync(AirportSearchFilter filter,
                                                               CancellationToken cancellation)
     {
@@ -15,35 +21,39 @@ internal class AirportRepository : IAirportRepository
         if (filter.IsEmpty)
             return [];
 
-        //TODO: remove the stub with implementation
-        var stubData = Enumerable.Range(1, 1)
-                                 .Select(_ => new DomainAirport(new(1),
-                                                                new(51.470020, -0.454295),
-                                                                new("Heathrow Airport London"),
-                                                                new("LHR"),
-                                                                new("EGLL")));
-
-        var predicate = PredicateBuilder.New<DomainAirport>();
+        var predicate = PredicateBuilder.New<DbAirport>();
 
         if (!string.IsNullOrWhiteSpace(filter.AirportName))
         {
-            predicate = predicate.And(a => a.Name.Name.Contains(filter.AirportName));
+            predicate = predicate.And(a => a.Name.Contains(filter.AirportName));
         }
 
         if (!string.IsNullOrWhiteSpace(filter.AirportIataCode))
         {
-            predicate = predicate.Or(a => a.IataCode != null && a.IataCode.Code.Contains(filter.AirportIataCode));
+            predicate = predicate.Or(a => a.Iata != null && a.Iata.Contains(filter.AirportIataCode));
         }
 
         if (!string.IsNullOrWhiteSpace(filter.AirportIcaoCode))
         {
-            predicate = predicate.Or(a => a.IcaoCode != null && a.IcaoCode.Code.Contains(filter.AirportIcaoCode));
+            predicate = predicate.Or(a => a.Icao != null && a.Icao.Contains(filter.AirportIcaoCode));
         }
 
-        var query = stubData.Where(predicate);
+        var query = Set.Where(predicate);
 
-        var result = query.ToList();
+        var dbEntities = await query.ToListAsync(cancellation).ConfigureAwait(false);
 
-        return await Task.FromResult(result).ConfigureAwait(false);
+        return dbEntities.Select(Map);
+    }
+
+    //TODO: consider using a separate mapping layer, factory, mapper, or whatever....
+    private static DomainAirport Map(DbAirport dbAirport)
+    {
+        ArgumentNullException.ThrowIfNull(dbAirport);
+
+        return new DomainAirport(new AirportId(dbAirport.Id),
+                                 new GeoLocation(dbAirport.Latitude, dbAirport.Longitude),
+                                 new AirportName(dbAirport.Name),
+                                 dbAirport.Iata is null ? null : new AirportIata(dbAirport.Iata),
+                                 dbAirport.Icao is null ? null : new AirportIcao(dbAirport.Icao));
     }
 }

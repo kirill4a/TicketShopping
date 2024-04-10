@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\core\TicketShopping.Application\TicketShopping.Application.csproj" />
-    <ProjectReference Include="..\..\infrastructure\TicketShopping.Persistence.Repositories\TicketShopping.Persistence.Repositories.csproj" />
+    <ProjectReference Include="..\..\infrastructure\TicketShopping.Persistence.Repositories.DI\TicketShopping.Persistence.Repositories.DI.csproj" />
   </ItemGroup>
 
 </Project>

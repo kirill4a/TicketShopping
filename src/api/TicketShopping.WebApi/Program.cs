@@ -7,7 +7,7 @@ const string AppVersion = "v1";
 var builder = WebApplication.CreateBuilder(args);
 
 /* Register application stuff */
-builder.Services.RegisterRepositories();
+builder.Services.RegisterRepositories(builder.Configuration.GetConnectionString("Default"));
 
 /* Configure MediatR */
 builder.Services.ConfigureMediator();

@@ -5,7 +5,7 @@ GET {{TicketShopping.WebApi_HostAddress}}/airport/ping/
 Accept: application/json
 
 ### search airport
-GET {{TicketShopping.WebApi_HostAddress}}/airport/search?query=EG
+GET {{TicketShopping.WebApi_HostAddress}}/airport/search?query=LondOn
 Accept: application/json
 
 

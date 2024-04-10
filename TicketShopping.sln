@@ -13,17 +13,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{C6297693-E67
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{E7D430EA-FA0D-42B5-90E0-18010C36960B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketShopping.Domain", "src\core\TicketShopping.Domain\TicketShopping.Domain.csproj", "{41A0EC24-B150-452F-A223-FB50859B2351}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketShopping.Domain", "src\core\TicketShopping.Domain\TicketShopping.Domain.csproj", "{41A0EC24-B150-452F-A223-FB50859B2351}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketShopping.Application.Contracts", "src\core\TicketShopping.Application.Contracts\TicketShopping.Application.Contracts.csproj", "{E1DCAC2A-14F2-4F3B-8506-E2BC5128ABFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketShopping.Application.Contracts", "src\core\TicketShopping.Application.Contracts\TicketShopping.Application.Contracts.csproj", "{E1DCAC2A-14F2-4F3B-8506-E2BC5128ABFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketShopping.Application", "src\core\TicketShopping.Application\TicketShopping.Application.csproj", "{6B585136-2538-4AD4-B38F-0F4B85406C33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketShopping.Application", "src\core\TicketShopping.Application\TicketShopping.Application.csproj", "{6B585136-2538-4AD4-B38F-0F4B85406C33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketShopping.WebApi", "src\api\TicketShopping.WebApi\TicketShopping.WebApi.csproj", "{9C416C2F-F38B-415B-BBA0-29D61320122C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketShopping.WebApi", "src\api\TicketShopping.WebApi\TicketShopping.WebApi.csproj", "{9C416C2F-F38B-415B-BBA0-29D61320122C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "persistence", "persistence", "{536B9E16-4F4E-47F5-B717-CFA9894E9C10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketShopping.Persistence.Repositories", "src\infrastructure\TicketShopping.Persistence.Repositories\TicketShopping.Persistence.Repositories.csproj", "{107738F7-54BA-41FE-AD6A-16E01E1B4BF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketShopping.Persistence.Repositories", "src\infrastructure\TicketShopping.Persistence.Repositories\TicketShopping.Persistence.Repositories.csproj", "{107738F7-54BA-41FE-AD6A-16E01E1B4BF6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketShopping.Persistence.Entities", "src\infrastructure\TicketShopping.Persistence.Entities\TicketShopping.Persistence.Entities.csproj", "{4A5D233A-9AE5-4F50-A430-E7F7FF22DEC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketShopping.Persistence.Migrator.MySql", "src\infrastructure\TicketShopping.Persistence.Migrator.MySql\TicketShopping.Persistence.Migrator.MySql.csproj", "{EDCD1709-54D3-435C-856D-728244AFBDFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketShopping.Persistence.Repositories.DI", "src\infrastructure\TicketShopping.Persistence.Repositories.DI\TicketShopping.Persistence.Repositories.DI.csproj", "{14170DCF-9E78-4D48-9E49-2E417F035311}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +57,18 @@ Global
 		{107738F7-54BA-41FE-AD6A-16E01E1B4BF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{107738F7-54BA-41FE-AD6A-16E01E1B4BF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{107738F7-54BA-41FE-AD6A-16E01E1B4BF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A5D233A-9AE5-4F50-A430-E7F7FF22DEC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A5D233A-9AE5-4F50-A430-E7F7FF22DEC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A5D233A-9AE5-4F50-A430-E7F7FF22DEC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A5D233A-9AE5-4F50-A430-E7F7FF22DEC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDCD1709-54D3-435C-856D-728244AFBDFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDCD1709-54D3-435C-856D-728244AFBDFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDCD1709-54D3-435C-856D-728244AFBDFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDCD1709-54D3-435C-856D-728244AFBDFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14170DCF-9E78-4D48-9E49-2E417F035311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14170DCF-9E78-4D48-9E49-2E417F035311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14170DCF-9E78-4D48-9E49-2E417F035311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14170DCF-9E78-4D48-9E49-2E417F035311}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +83,9 @@ Global
 		{9C416C2F-F38B-415B-BBA0-29D61320122C} = {C6297693-E678-4BB1-AE63-70F0251179DA}
 		{536B9E16-4F4E-47F5-B717-CFA9894E9C10} = {E7D430EA-FA0D-42B5-90E0-18010C36960B}
 		{107738F7-54BA-41FE-AD6A-16E01E1B4BF6} = {536B9E16-4F4E-47F5-B717-CFA9894E9C10}
+		{4A5D233A-9AE5-4F50-A430-E7F7FF22DEC5} = {536B9E16-4F4E-47F5-B717-CFA9894E9C10}
+		{EDCD1709-54D3-435C-856D-728244AFBDFA} = {536B9E16-4F4E-47F5-B717-CFA9894E9C10}
+		{14170DCF-9E78-4D48-9E49-2E417F035311} = {536B9E16-4F4E-47F5-B717-CFA9894E9C10}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF915A17-9335-46C6-BC28-A99B835A0DAC}
