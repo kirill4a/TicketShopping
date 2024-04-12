@@ -3,4 +3,5 @@
 public interface IAirportRepository
 {
     Task<IEnumerable<Airport>> FilterAsync(AirportSearchFilter filter, CancellationToken cancellation);
+    void AddRange(IEnumerable<Airport> airports);
 }

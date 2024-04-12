@@ -1,6 +1,7 @@
 using TicketShopping.Application.DI;
 using TicketShopping.Persistence.Repositories.DI;
 using Microsoft.OpenApi.Models;
+using TicketShopping.Integration.Aviationstack.DI;
 
 const string AppVersion = "v1";
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 /* Register application stuff */
 builder.Services.RegisterRepositories(builder.Configuration.GetConnectionString("Default"));
+builder.Services.RegisterAviationstackIntegration();
 
 /* Configure MediatR */
 builder.Services.ConfigureMediator();

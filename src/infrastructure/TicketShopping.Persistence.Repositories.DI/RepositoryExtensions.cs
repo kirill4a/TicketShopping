@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using TicketShopping.Domain;
 using TicketShopping.Domain.Aggregates.Airport;
 using TicketShopping.Persistence.Repositories.Airport;
 
@@ -14,6 +15,7 @@ public static class RepositoryExtensions
                                                           string connectionString)
     {
         RegisterDbContext(services, connectionString);
+        RegisterUnitOfWork(services);
 
         services.AddScoped<IAirportRepository>(sp =>
         {
@@ -32,4 +34,8 @@ public static class RepositoryExtensions
                                                 options.UseMySql(connectionString,
                                                 ServerVersion.AutoDetect(connectionString)));
     }
+
+    private static void RegisterUnitOfWork(IServiceCollection services) 
+        =>
+        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<TicketShoppingDbContext>());
 }

@@ -1,11 +1,17 @@
 @TicketShopping.WebApi_HostAddress = http://localhost:5201/api
 
 ### ping
-GET {{TicketShopping.WebApi_HostAddress}}/airport/ping/
+GET {{TicketShopping.WebApi_HostAddress}}/airports/ping/
 Accept: application/json
 
-### search airport
-GET {{TicketShopping.WebApi_HostAddress}}/airport/search?query=LondOn
+### search airport London
+GET {{TicketShopping.WebApi_HostAddress}}/airports/search?query=LondOn
 Accept: application/json
 
+### search airport Anaa
+GET {{TicketShopping.WebApi_HostAddress}}/airports/search?query=AnA
+Accept: application/json
 
+### import airports
+POST {{TicketShopping.WebApi_HostAddress}}/airports/import
+Accept: application/json

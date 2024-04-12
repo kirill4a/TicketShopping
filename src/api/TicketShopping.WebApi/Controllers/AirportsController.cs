@@ -1,16 +1,17 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using TicketShopping.Application.Contracts.Commands;
 using TicketShopping.Application.Contracts.Queries;
 
 namespace TicketShopping.WebApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AirportController : ControllerBase
+public class AirportsController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public AirportController(IMediator mediator)
+    public AirportsController(IMediator mediator)
     {
         _mediator = mediator;
     }
@@ -40,5 +41,15 @@ public class AirportController : ControllerBase
         var searchQuery = new SearchAirportsQuery(trimmedQuery);
         var airports = await _mediator.Send(searchQuery, cancellation);
         return Ok(airports);
+    }
+
+    [HttpPost("import")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> Import(CancellationToken cancellation)
+    {
+        var importResult = await _mediator.Send(new ImportAirportsCommand(), cancellation);
+        return Ok(importResult);
     }
 }

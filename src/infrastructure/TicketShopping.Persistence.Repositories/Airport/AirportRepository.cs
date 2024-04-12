@@ -13,6 +13,12 @@ internal class AirportRepository : RepositoryBase<DbAirport>, IAirportRepository
     {
     }
 
+    public void AddRange(IEnumerable<DomainAirport> airports)
+    {
+        ArgumentNullException.ThrowIfNull(airports, nameof(airports));
+        Set.AddRange(airports.Select(MapToDb).ToList());
+    }
+
     public async Task<IEnumerable<DomainAirport>> FilterAsync(AirportSearchFilter filter,
                                                               CancellationToken cancellation)
     {
@@ -42,11 +48,11 @@ internal class AirportRepository : RepositoryBase<DbAirport>, IAirportRepository
 
         var dbEntities = await query.ToListAsync(cancellation).ConfigureAwait(false);
 
-        return dbEntities.Select(Map);
+        return dbEntities.Select(MapToDomain);
     }
 
     //TODO: consider using a separate mapping layer, factory, mapper, or whatever....
-    private static DomainAirport Map(DbAirport dbAirport)
+    private static DomainAirport MapToDomain(DbAirport dbAirport)
     {
         ArgumentNullException.ThrowIfNull(dbAirport);
 
@@ -55,5 +61,20 @@ internal class AirportRepository : RepositoryBase<DbAirport>, IAirportRepository
                                  new AirportName(dbAirport.Name),
                                  dbAirport.Iata is null ? null : new AirportIata(dbAirport.Iata),
                                  dbAirport.Icao is null ? null : new AirportIcao(dbAirport.Icao));
+    }
+
+    private static DbAirport MapToDb(DomainAirport domainAirport)
+    {
+        ArgumentNullException.ThrowIfNull(domainAirport);
+
+        return new DbAirport
+        {
+            Id = domainAirport.Id.Id,
+            Name = domainAirport.Name.Name,
+            Iata = domainAirport.IataCode?.Code,
+            Icao = domainAirport.IcaoCode?.Code,
+            Latitude = domainAirport.Location.Latitude,
+            Longitude = domainAirport.Location.Longitude
+        };
     }
 }
